@@ -1,27 +1,85 @@
 //import 'babel-polyfill';
-import express from 'express';
-
-const HOST = process.env.HOST;
+const  express = require('express');
+//const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
+const mongoose = require('mongoose');
+const {Goal} = require('./models');
+var bodyParser = require('body-parser');
+const DATABASE_URL = process.env.DATABASE_URL ||
+                     global.DATABASE_URL ||
+                     'mongodb://localhost/goalzapp';
 
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
+
 const app = express();
+var jsonParser = bodyParser.json()
 
 app.use(express.static(process.env.CLIENT_PATH));
 
-function runServer() {
-    return new Promise((resolve, reject) => {
-        app.listen(PORT, HOST, (err) => {
-            if (err) {
-                console.error(err);
-                reject(err);
-            }
+mongoose.Promise = global.Promise;
 
-            const host = HOST || 'localhost';
-            console.log(`Listening on ${host}:${PORT}`);
-        });
+app.get('/goal', (req, res) => {
+
+  Goal
+      .find()
+      .exec()
+      .then(goal => {
+        res.json(goal);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'something went wrong'});
+}
+)};
+
+app.post('/goal',jsonParser, function(req, res) {
+    console.log(req.body);
+     Goal.create({
+        goal: req.body.goal
+    }, function(err, item) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.status(201).json(item);
     });
+});
+
+
+
+
+let server;
+function runServer() {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(DATABASE_URL, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(PORT, () => {
+        console.log(`Your app is listening on port ${PORT}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+    });
+  });
+}
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+     return new Promise((resolve, reject) => {
+       console.log('Closing server');
+       server.close(err => {
+           if (err) {
+               return reject(err);
+           }
+           resolve();
+       });
+     });
+  });
 }
 
 if (require.main === module) {

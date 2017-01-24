@@ -14,9 +14,9 @@ export default class Form extends React.Component {
 	render() {
 		return (
 			<form className="form">
-				<label for="text">Enter your steps here</label>
-				<input type="text" placeholder="Where do you want to go?" />
-				<input type="submit" name="submit" />
+				<label for="text">Enter your steps here:</label>
+				<input type="text" placeholder="Your steps" />
+				<input type="submit" name="submit step" value="Enter Your Step"/>
 			</form>
 		)
 	}
