@@ -1,5 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux';
 
+import * as actions from '../actions/actions';
 
 function Header() {
   return (
@@ -12,5 +14,7 @@ function Header() {
     </div>
 )
 }
+
+// export default connect ()(Header);
 
 export default Header;

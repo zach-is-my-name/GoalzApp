@@ -1,15 +1,19 @@
+import {connect} from 'react-redux';
 import React from 'react'
 import Header from './header'
-import Form from './form'
-import FormFooter from './form-footer'
+import ListForm from './list-form'
+import FooterForm from './footer-form'
 
 function App() {
   return(
 
     <div className="app">
       <Header />
-      <Form />
-      <FormFooter />
+      <ListForm />
+      <FooterForm />
     </div>
 )}
-export default App
+
+// export default connect ()(App);
+
+export default App;

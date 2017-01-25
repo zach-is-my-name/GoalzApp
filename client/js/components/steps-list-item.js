@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 function ListItem(props) {
 return(
@@ -9,4 +10,4 @@ return(
 
 };
 
-export default ListItem
+export default connect ()(ListItem);
