@@ -15,7 +15,8 @@ export const postError = (goal, error) => ({
 
 export const postGoals = goal => dispatch => {
 	const url = `http://localhost:8080/goal`;
-	return fetch(url, {method: 'POST'}).then(response => {
+	return fetch(url, {method: 'POST', body:JSON.stringify({goal}),
+			headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
 		console.log(response);
 		if (!response.ok) {
 			const error = new Error(response.statusText)
@@ -28,7 +29,7 @@ export const postGoals = goal => dispatch => {
 	.then(data =>
 		dispatch(postSuccess(data))
 	)
-	.catch(error => 
+	.catch(error =>
 		dispatch(postError(error))
 	);
 };

@@ -50,10 +50,12 @@ app.post('/goals-test/:goal', function(req, res) {
 
 app.post('/goal', jsonParser, function(req, res) {
     console.log(req.body);
+    console.error(req.body);
      Goal.create({
         goal: req.body.goal
     }, function(err, item) {
         if (err) {
+          console.log(err);
             return res.status(500).json({
                 message: 'Internal Server Error'
             });

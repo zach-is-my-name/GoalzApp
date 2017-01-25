@@ -18,7 +18,7 @@ class FooterForm extends React.Component {
 	render() {
 		return (
 			<form className="footer-form" onSubmit={this.submitGoal}>
-				<p>Goal entered into unpit box rendered here</p>
+				<p>Goal entered into input box rendered here</p>
 				<label htmlFor="text">Enter your goal here:</label>
 				<input type="text" id="text" placeholder="Your Goal" ref="input" required />
 				<input type="submit" name="submit step" value="Enter Goal"/>
