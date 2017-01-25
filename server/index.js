@@ -30,8 +30,8 @@ app.get('/goal', (req, res) => {
       .catch(err => {
         console.error(err);
         res.status(500).json({error: 'something went wrong'});
-}
-)};
+      })
+});
 
 app.post('/goal',jsonParser, function(req, res) {
     console.log(req.body);
