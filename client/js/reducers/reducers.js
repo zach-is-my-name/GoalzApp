@@ -1,14 +1,14 @@
 import * as actions from '../actions/actions';
 
 const initialState = {
-	currentGoal: [],
+	currentGoal: '',
 	currentGoalSteps: []
 };
 
 export const goalReducer = (state, action) => {
 	state = state || initialState;
 	if (action.type === actions.POST_SUCCESS) {
-		let goal = action.goal;
+		let goal = action.goal.goal;
 		state = Object.assign({}, state, {currentGoal: goal
 		});
 		return state;

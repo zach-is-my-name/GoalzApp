@@ -12,19 +12,25 @@ class FooterForm extends React.Component {
 	submitGoal(event) {
 		event.preventDefault();
 		this.props.dispatch(actions.postGoals(this.refs.input.value));
+		document.getElementById('form-text').value='';
 	}
-
 
 	render() {
 		return (
 			<form className="footer-form" onSubmit={this.submitGoal}>
-				<p>Goal entered into input box rendered here</p>
-				<label htmlFor="text">Enter your goal here:</label>
-				<input type="text" id="text" placeholder="Your Goal" ref="input" required />
+				<p>{this.props.currentGoal}</p>
+				<label htmlFor="form-text">Enter your goal here:</label>
+				<input type="text" id="form-text" placeholder="Your Goal" ref="input" required />
 				<input type="submit" name="submit step" value="Enter Goal"/>
 			</form>
 		)
 	}
 }
 
-export default connect()(FooterForm);
+const mapStateToProps = (state, props) => {
+	return {
+		currentGoal: state.currentGoal
+	}
+}
+
+export default connect(mapStateToProps)(FooterForm);
