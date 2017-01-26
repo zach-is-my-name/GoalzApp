@@ -40,7 +40,7 @@ app.put('/goal/:id', jsonParser, (req, res) => {
     "steps": updatedSteps
   };  
   Goal
-  .findByIdAndUpdate(req.params.id, {$set: update})
+  .findByIdAndUpdate(req.params.id, {$set: update}, {new: true})
   .exec()
   .then(updatedGoal => res.status(201).json(updatedGoal))
   .catch(err => res.status(500).json({message: 'your update request was unsuccessful'}));
