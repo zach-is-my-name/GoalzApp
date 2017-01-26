@@ -13,6 +13,12 @@ export const goalReducer = (state, action) => {
 		});
 		return state;
 	}
+	if (action.type === actions.ADD_STEP) {
+		let step = action.step;
+		state = Object.assign({}, state, {currentGoalSteps: state.currentGoalSteps.concat(step)
+		});
+		return state;
+	}
 	return state;
 };
 

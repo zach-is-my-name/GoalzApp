@@ -6,23 +6,37 @@ import * as actions from '../actions/actions';
 class ListForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.submitGoal = this.submitGoal.bind(this);
+		this.submitStep = this.submitStep.bind(this);
 	}
 
-	submitGoal(event) {
+	submitStep(event) {
 		event.preventDefault();
+		this.props.dispatch(actions.addStep(this.refs.input.value));
+		document.getElementById('list-text').value='';
 	}
 
 
 	render() {
+
+		const stepsArray = this.props.currentGoalSteps.map((step, index) => {
+			return <li key={index}>{step}</li>
+		});
+
 		return (
-			<form className="list-form">
-				<label htmlFor="text">Enter your steps here:</label>
-				<input type="text" id="text" placeholder="Your steps" />
+			<form className="list-form" onSubmit={this.submitStep}>
+				<label htmlFor="list-text">Enter your steps here:</label>
+				<input type="text" id="list-text" placeholder="Your steps" ref="input" />
 				<input type="submit" name="submit step" value="Enter Your Step"/>
+				<p>{stepsArray}</p>
 			</form>
 		)
 	}
 }
 
-export default connect ()(ListForm);
+const mapStateToProps = (state, props) => {
+	return {
+		currentGoalSteps: state.currentGoalSteps
+	}
+}
+
+export default connect (mapStateToProps)(ListForm);

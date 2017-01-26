@@ -1,5 +1,12 @@
 import 'isomorphic-fetch';
 
+export const ADD_STEP = 'ADD_STEP';
+export const addStep = (step) => ({
+	type: ADD_STEP,
+	step
+});
+
+
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const postSuccess = (goal) => ({
 	type: POST_SUCCESS,
