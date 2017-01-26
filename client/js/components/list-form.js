@@ -11,7 +11,7 @@ class ListForm extends React.Component {
 
 	submitStep(event) {
 		event.preventDefault();
-		this.props.dispatch(actions.addStep(this.refs.input.value));
+		this.props.dispatch(actions.putStep(this.refs.input.value));
 		document.getElementById('list-text').value='';
 	}
 
