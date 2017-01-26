@@ -15,11 +15,12 @@ export const putStepError = (step, error) => ({
 
 export const putStep = step => (dispatch, getState) => {
 	const state = getState();
-	console.log(state.currentGoal);
-    const url = `http://localhost:8080/goal/${state.currentGoal._id}`
+	// const steps = state.currentGoalSteps.concat(step);
+	console.log(step);
+    const url = `http://localhost:8080/goal/${state.currentGoalId}`
     return fetch(url, {method:'PUT', body:JSON.stringify({step}), 
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
-
+        	console.log(response);
       if (!response.ok){
             const error = new Error(response.statusText)
             error.response = response

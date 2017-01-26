@@ -34,8 +34,7 @@ app.get('/goal', (req, res) => {
 });
 
 app.put('/goal/:id', jsonParser, (req, res) => {
-  console.log(req.body.steps);
-  console.log(req.params);
+  console.log("req body steps " + req.body.steps);
   let updatedSteps = req.body.steps; 
   let update = {
     "steps": updatedSteps
