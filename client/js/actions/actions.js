@@ -15,10 +15,10 @@ export const putStepError = (step, error) => ({
 
 export const putStep = step => (dispatch, getState) => {
 	const state = getState();
-	// const steps = state.currentGoalSteps.concat(step);
-	console.log(step);
+	const steps = state.currentGoalSteps.concat(step);
+	console.log(steps);
     const url = `http://localhost:8080/goal/${state.currentGoalId}`
-    return fetch(url, {method:'PUT', body:JSON.stringify({step}), 
+    return fetch(url, {method:'PUT', body:JSON.stringify({steps}), 
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
         	console.log(response);
       if (!response.ok){
@@ -29,9 +29,11 @@ export const putStep = step => (dispatch, getState) => {
         return response;    
     })
     .then(response => response.json())
-    .then(data => 
+    .then(data => {
+    	console.log(data);
+    	// data = action.step.steps;
        dispatch(putStepSuccess(data))
-     )
+     })
      .catch(error =>
       dispatch(putStepError(error))
     );
