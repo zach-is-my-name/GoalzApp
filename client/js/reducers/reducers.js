@@ -3,7 +3,8 @@ import * as actions from '../actions/actions';
 const initialState = {
 	currentGoal: '',
 	currentGoalSteps: [],
-	currentGoalId: ''
+	currentGoalId: '',
+	goalHistory: []
 };
 
 export const goalReducer = (state, action) => {
@@ -21,6 +22,17 @@ export const goalReducer = (state, action) => {
 		});
 		return state;
 	}
+	if (action.type === actions.FETCH_SUCCESS) {
+	 	let goalsArray = [];
+	 	for (var i = 0; i < action.goals.length; i++) {
+	 		goalsArray[i] = action.goals[i].goal;
+	 	}
+		console.log(goalsArray);
+		state = Object.assign({}, state, {goalHistory: state.goalHistory.concat(goalsArray)
+		});
+		console.log(state);
+		return state;
+	}	
 	return state;
 };
 

@@ -24,8 +24,8 @@ app.get('/goal', (req, res) => {
   Goal
       .find()
       .exec()
-      .then(goal => {
-        res.json(goal);
+      .then(goals => {
+        res.json(goals);
       })
       .catch(err => {
         console.error(err);

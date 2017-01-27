@@ -1,5 +1,39 @@
 import 'isomorphic-fetch';
 
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const fetchSuccess = (goals) => ({
+    type: FETCH_SUCCESS,
+    goals
+});
+
+export const FETCH_ERROR = 'FETCH_ERROR';
+export const fetchError = (goals, error) => ({
+    type: FETCH_ERROR,
+    goals,
+    error
+});
+
+export const fetchGoals = goals => dispatch => {
+    const url = `/goal`;
+    console.log("goals" + goals);
+    return fetch(url).then(response => {
+        if (!response.ok) {
+            const error = new Error(response.statusText)
+            error.response = response
+            throw error;
+        }
+        return response.json();
+    })
+    .then(data => {
+    	console.log(data);
+        dispatch(fetchSuccess(data));
+    })
+    .catch(error =>
+        dispatch(fetchError(error))
+    );
+};
+
+
 export const PUT_STEP_SUCCESS = 'PUT_STEP_SUCCESS';
 export const putStepSuccess = (step) => ({
 	type: PUT_STEP_SUCCESS,

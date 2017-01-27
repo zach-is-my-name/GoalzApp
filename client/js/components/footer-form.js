@@ -15,21 +15,38 @@ class FooterForm extends React.Component {
 		document.getElementById('form-text').value='';
 	}
 
+    componentDidMount() {
+        this.props.dispatch(
+            actions.fetchGoals()
+        );
+    }  	
+
 	render() {
+
+		const goalsDropDown = this.props.goalHistory.map((goal, index) => {
+			return <option value={index} key={index}>{goal}</option>
+		});
+
 		return (
-			<form className="footer-form" onSubmit={this.submitGoal}>
-				<p>{this.props.currentGoal}</p>
-				<label htmlFor="form-text">Enter your goal here:</label>
-				<input type="text" id="form-text" placeholder="Your Goal" ref="input" required />
-				<input type="submit" name="submit step" value="Enter Goal"/>
-			</form>
+			<div className="footer">
+				<form className="footer-form" onSubmit={this.submitGoal}>
+					<p>{this.props.currentGoal}</p>
+					<label htmlFor="form-text">Enter your goal here:</label>
+					<input type="text" id="form-text" placeholder="Your Goal" ref="input" required />
+					<input type="submit" name="submit step" value="Enter Goal"/>
+				</form>
+				<select className="footer-dropdown">
+				  {goalsDropDown}
+				</select>
+			</div>
 		)
 	}
 }
 
 const mapStateToProps = (state, props) => {
 	return {
-		currentGoal: state.currentGoal
+		currentGoal: state.currentGoal,
+		goalHistory: state.goalHistory
 	}
 }
 
