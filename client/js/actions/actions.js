@@ -17,7 +17,7 @@ export const putStep = step => (dispatch, getState) => {
 	const state = getState();
 	const steps = state.currentGoalSteps.concat(step);
 	console.log(steps);
-    const url = `http://localhost:8080/goal/${state.currentGoalId}`
+    const url = `/goal/${state.currentGoalId}`
     return fetch(url, {method:'PUT', body:JSON.stringify({steps}), 
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
         	console.log(response);
@@ -26,9 +26,8 @@ export const putStep = step => (dispatch, getState) => {
             error.response = response
             throw error;
         }   
-        return response;    
+        return response.json();    
     })
-    .then(response => response.json())
     .then(data => {
     	console.log(data);
     	console.log(step);
@@ -55,8 +54,7 @@ export const postError = (goal, error) => ({
 });
 
 export const postGoals = goal => dispatch => {
-	const url = `http://localhost:8080/goal`;
-	return fetch(url, {method: 'POST', body:JSON.stringify({goal}),
+	return fetch('/goal', {method: 'POST', body:JSON.stringify({goal}),
 			headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
 		console.log(response);
 		if (!response.ok) {
