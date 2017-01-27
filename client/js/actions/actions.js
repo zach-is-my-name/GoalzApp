@@ -30,8 +30,8 @@ export const putStep = step => (dispatch, getState) => {
     })
     .then(data => {
     	console.log(data);
-    	console.log(step);
-      	data.step = step;
+    	// console.log(step);
+     //  	data.step = step;
       	console.log(data);
        dispatch(putStepSuccess(data))
      })

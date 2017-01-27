@@ -46,20 +46,6 @@ app.put('/goal/:id', jsonParser, (req, res) => {
   .catch(err => res.status(500).json({message: 'your update request was unsuccessful'}));
 });
 
-// app.post('/goals-test/:goal', function(req, res) {
-//     console.log(req.params);
-//      Goal.create({
-//         goal: req.params.goal
-//     }, function(err, item) {
-//         if (err) {
-//             return res.status(500).json({
-//                 message: 'Internal Server Error'
-//             });
-//         }
-//         res.status(201).json(item);
-//     });
-// });
-
 app.post('/goal', jsonParser, function(req, res) {
     console.log(req.body);
     console.error(req.body);
