@@ -23,4 +23,4 @@ GoalzApp is great for developers and non-developers alike
 
 To run GoalzApp, simply npm run dev after installing local dependencies
 
-![GoalzApp](http://github.com/)
+![GoalzApp](http://github.com/master/GoalzApp_screenshot.png)
