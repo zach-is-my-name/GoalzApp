@@ -31,7 +31,9 @@ export const putStep = step => (dispatch, getState) => {
     .then(response => response.json())
     .then(data => {
     	console.log(data);
-    	// data = action.step.steps;
+    	console.log(step);
+      	data.step = step;
+      	console.log(data);
        dispatch(putStepSuccess(data))
      })
      .catch(error =>

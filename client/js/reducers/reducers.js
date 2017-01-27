@@ -4,7 +4,7 @@ console.log("top of reducer");
 
 const initialState = {
 	currentGoal: '',
-	currentGoalSteps: ['Uno', 'Dos', 'tres'],
+	currentGoalSteps: [],
 	currentGoalId: ''
 };
 
@@ -19,14 +19,9 @@ export const goalReducer = (state, action) => {
 		return state;
 	}
 	if (action.type === actions.PUT_STEP_SUCCESS) {
-		console.log(state);
-		console.log(action.step);
-		// let step = action.step;
-		console.log(step);
-		console.log("data" + data);
-		console.log("state " + state.currentGoalSteps);
-		// state = Object.assign({}, state, {currentGoalSteps: state.currentGoalSteps.concat(step)
-		// });
+		let step = action.step.step;
+		state = Object.assign({}, state, {currentGoalSteps: state.currentGoalSteps.concat(step)
+		});
 		return state;
 	}
 	return state;
