@@ -1,11 +1,18 @@
 //<footer> content here </footer>
 //footer {position: absolute; bottom: 0;}
 
+
 h1 {
   text-align: center;
 }
 
-.app {
+body {
+  background-color: lightblue;
+  background-image: url("./3dpaper.jpg");
+
+}
+
+#app {
   width: 500px;
   height:800px;
   margin-left: auto;
@@ -15,8 +22,4 @@ h1 {
 .footer {
 position: absolute; bottom: 0;
 
-}
-
-body {
-  background:
 }
