@@ -8,8 +8,9 @@ h1 {
 
 body {
   background-color: lightblue;
-  background-image: url("./3dpaper.jpg");
-
+  background-image: url("../assets/img/3dpaper.jpg")
+  no-repeat center center fixed;
+    background-size: cover;
 }
 
 #app {
