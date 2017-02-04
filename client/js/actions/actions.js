@@ -15,7 +15,6 @@ export const fetchError = (goals, error) => ({
 
 export const fetchGoals = goals => dispatch => {
     const url = `/goal`;
-    console.log("goals" + goals);
     return fetch(url).then(response => {
         if (!response.ok) {
             const error = new Error(response.statusText)
@@ -23,11 +22,12 @@ export const fetchGoals = goals => dispatch => {
             throw error;
         }
         return response.json();
+        console.log(response)
     })
     .then(data => {
-    	console.log(data);
         dispatch(fetchSuccess(data));
     })
+
     .catch(error =>
         dispatch(fetchError(error))
     );
@@ -52,15 +52,15 @@ export const putStep = step => (dispatch, getState) => {
 	const steps = state.currentGoalSteps.concat(step);
 	console.log(steps);
     const url = `/goal/${state.currentGoalId}`
-    return fetch(url, {method:'PUT', body:JSON.stringify({steps}), 
+    return fetch(url, {method:'PUT', body:JSON.stringify({steps}),
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
         	console.log(response);
       if (!response.ok){
             const error = new Error(response.statusText)
             error.response = response
             throw error;
-        }   
-        return response.json();    
+        }
+        return response.json();
     })
     .then(data => {
     	console.log(data);

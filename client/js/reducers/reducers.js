@@ -27,12 +27,12 @@ export const goalReducer = (state, action) => {
 	 	for (var i = 0; i < action.goals.length; i++) {
 	 		goalsArray[i] = action.goals[i].goal;
 	 	}
-		console.log(goalsArray);
 		state = Object.assign({}, state, {goalHistory: state.goalHistory.concat(goalsArray)
 		});
-		console.log(state);
 		return state;
-	}	
+	}
+	// if (action.type === actions.GET_EXISTING_GOAL) {
+	// 	state = Object.assign({}, state, {currentGoal: state.goalHistory.})
+	// }
 	return state;
 };
-

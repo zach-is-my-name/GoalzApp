@@ -1,16 +1,18 @@
 import {connect} from 'react-redux';
 import React from 'react';
 import Header from './header';
-import ListForm from './list-form';
-import FooterForm from './footer-form';
+import StepsForm from './steps-form';
+import GoalFormInput from './goal-form-input';
+import CurrentGoal from './current-goal';
 
 function App() {
   return(
 
     <div className="app">
       <Header />
-      <ListForm />
-      <FooterForm />
+      <StepsForm />
+      <CurrentGoal />
+      <GoalFormInput />
     </div>
 )}
 

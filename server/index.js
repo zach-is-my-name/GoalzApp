@@ -13,7 +13,7 @@ console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 
 const app = express();
-var jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json()
 
 app.use(express.static(process.env.CLIENT_PATH));
 
@@ -25,6 +25,7 @@ app.get('/goal', (req, res) => {
       .find()
       .exec()
       .then(goals => {
+        console.log(goals);
         res.json(goals);
       })
       .catch(err => {
@@ -35,10 +36,10 @@ app.get('/goal', (req, res) => {
 
 app.put('/goal/:id', jsonParser, (req, res) => {
   console.log("req body steps " + req.body.steps);
-  let updatedSteps = req.body.steps; 
+  let updatedSteps = req.body.steps;
   let update = {
     "steps": updatedSteps
-  };  
+  };
   Goal
   .findByIdAndUpdate(req.params.id, {$set: update}, {new: true})
   .exec()
