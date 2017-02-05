@@ -13,6 +13,13 @@ export const fetchError = (goals, error) => ({
     error
 });
 
+export const SELECT_GOAL = 'SELECT_GOAL';
+export const selectGoal = (goal) => ({
+    type: SELECT_GOAL,
+    selectedGoal
+})
+
+
 export const fetchGoals = goals => dispatch => {
     const url = `/goal`;
     return fetch(url).then(response => {
@@ -22,7 +29,7 @@ export const fetchGoals = goals => dispatch => {
             throw error;
         }
         return response.json();
-        console.log(response)
+        // console.log(response)
     })
     .then(data => {
         dispatch(fetchSuccess(data));
@@ -50,11 +57,11 @@ export const putStepError = (step, error) => ({
 export const putStep = step => (dispatch, getState) => {
 	const state = getState();
 	const steps = state.currentGoalSteps.concat(step);
-	console.log(steps);
+	// console.log(steps);
     const url = `/goal/${state.currentGoalId}`
     return fetch(url, {method:'PUT', body:JSON.stringify({steps}),
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
-        	console.log(response);
+        	// console.log(response);
       if (!response.ok){
             const error = new Error(response.statusText)
             error.response = response
@@ -63,10 +70,10 @@ export const putStep = step => (dispatch, getState) => {
         return response.json();
     })
     .then(data => {
-    	console.log(data);
+    	// console.log(data);
     	// console.log(step);
      //  	data.step = step;
-      	console.log(data);
+     //  	console.log(data);
        dispatch(putStepSuccess(data))
      })
      .catch(error =>
@@ -90,7 +97,7 @@ export const postError = (goal, error) => ({
 export const postGoals = goal => dispatch => {
 	return fetch('/goal', {method: 'POST', body:JSON.stringify({goal}),
 			headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },}).then(response => {
-		console.log(response);
+		// console.log(response);
 		if (!response.ok) {
 			const error = new Error(response.statusText)
 			error.response = response

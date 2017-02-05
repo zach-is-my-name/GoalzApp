@@ -19,6 +19,7 @@ app.use(express.static(process.env.CLIENT_PATH));
 
 mongoose.Promise = global.Promise;
 
+
 app.get('/goal', (req, res) => {
 
   Goal
@@ -34,12 +35,16 @@ app.get('/goal', (req, res) => {
       })
 });
 
+
+
+
 app.put('/goal/:id', jsonParser, (req, res) => {
-  console.log("req body steps " + req.body.steps);
+  // console.log("req body steps " + req.body.steps);
   let updatedSteps = req.body.steps;
   let update = {
     "steps": updatedSteps
   };
+
   Goal
   .findByIdAndUpdate(req.params.id, {$set: update}, {new: true})
   .exec()
@@ -47,9 +52,13 @@ app.put('/goal/:id', jsonParser, (req, res) => {
   .catch(err => res.status(500).json({message: 'your update request was unsuccessful'}));
 });
 
+
+
+
 app.post('/goal', jsonParser, function(req, res) {
-    console.log(req.body);
-    console.error(req.body);
+    // console.log(req.body);
+    // console.error(req.body);
+
      Goal.create({
         goal: req.body.goal
     }, function(err, item) {
@@ -62,6 +71,15 @@ app.post('/goal', jsonParser, function(req, res) {
         res.status(201).json(item);
     });
 });
+
+
+
+
+
+
+
+
+
 
 
 

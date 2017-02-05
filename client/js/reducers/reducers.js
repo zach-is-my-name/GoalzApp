@@ -12,8 +12,7 @@ export const goalReducer = (state, action) => {
 	if (action.type === actions.POST_SUCCESS) {
 		let goal = action.goal.goal;
 		let id = action.goal._id;
-		state = Object.assign({}, state, {currentGoal: goal
-		}, {currentGoalId: id});
+		state = Object.assign({}, state, {currentGoal: goal}, {currentGoalId: id});
 		return state;
 	}
 	if (action.type === actions.PUT_STEP_SUCCESS) {
@@ -31,8 +30,10 @@ export const goalReducer = (state, action) => {
 		});
 		return state;
 	}
-	// if (action.type === actions.GET_EXISTING_GOAL) {
+	// if (action.type === actions.SELECT_GOAL) {
 	// 	state = Object.assign({}, state, {currentGoal: state.goalHistory.})
+	// 	return state;
 	// }
+
 	return state;
 };

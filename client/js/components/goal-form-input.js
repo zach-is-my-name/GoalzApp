@@ -7,7 +7,7 @@ export class GoalFormInput extends React.Component {
 	constructor(props) {
 		super(props);
 		this.submitGoal = this.submitGoal.bind(this);
-		this.selectGoal = this.selectGoal.bind(this);
+		// this.selectGoal = this.selectGoal.bind(this);
 	}
 
 	submitGoal(event) {
@@ -22,10 +22,10 @@ export class GoalFormInput extends React.Component {
         );
     }
 
-		selectGoal(event) {
-				
-				);
-		}
+		// selectGoal(event) {
+		// 		this.props.dispatch(actions.selectGoal(this.refs.select.value));
+		// 		);
+		// }
 
 	render() {
 
@@ -34,8 +34,8 @@ export class GoalFormInput extends React.Component {
 		});
 
 		const goalSelector =
-		 			<form className="goal-select">
-						<select onSubmit={this.selectGoal}>
+		 			<form className="goal-select" onSubmit={this.selectGoal}>
+						<select ref="select">
 							{goalsDropDown}
 						</select>
 					</form>
