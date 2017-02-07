@@ -7,7 +7,7 @@ export class GoalFormInput extends React.Component {
 	constructor(props) {
 		super(props);
 		this.submitGoal = this.submitGoal.bind(this);
-		this.selectGoal = this.selectGoal.bind(this);
+		// this.selectGoal = this.selectGoal.bind(this);
 	}
 
 	submitGoal(event) {
@@ -22,12 +22,16 @@ export class GoalFormInput extends React.Component {
         );
     }
 
-		selectGoal(event) {
-				
-				);
-		}
+		// selectGoal(event) {
+				// this.props.dispatch(actions.selectGoal(this.refs.select.value));
+				// console.log(this.refs.select.value);
+		// }
 
 	render() {
+
+
+
+
 
 		const goalsDropDown = this.props.goalHistory.map((goal, index) => {
 			return <option value={index} key={index}>{goal}</option>
@@ -35,7 +39,7 @@ export class GoalFormInput extends React.Component {
 
 		const goalSelector =
 		 			<form className="goal-select">
-						<select onSubmit={this.selectGoal}>
+						<select ref="select" onChange={this.selectGoal}>
 							{goalsDropDown}
 						</select>
 					</form>
@@ -63,7 +67,8 @@ export class GoalFormInput extends React.Component {
 const mapStateToProps = (state, props) => {
 	return {
 		currentGoal: state.currentGoal,
-		goalHistory: state.goalHistory
+		goalHistory: state.goalHistory,
+
 	}
 }
 
