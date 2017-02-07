@@ -8,7 +8,7 @@ function Header() {
     <div className="Header">
       <header>
         <h1>
-          GoalzApp
+          GoalZapp
         </h1>
       </header>
     </div>

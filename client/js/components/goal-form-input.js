@@ -24,13 +24,27 @@ export class GoalFormInput extends React.Component {
 
 		selectGoal(event) {
 				// this.props.dispatch(actions.selectGoal(this.refs.select.value));
-				console.log(this.refs.select.value);
+				// console.log(this.refs.select.value);
 		}
 
 	render() {
+		let  myGoal;
+		if (this.props.goalHistory[0]){
+			 myGoal = this.props.goalHistory[0].goal
+		} else {
+			myGoal = "Goal History is undefined"
+		}
+
+		console.log(myGoal);
+		// console.log(this.props.goalHistory[0].goal)
+		//no
+		// console.log(this.props.goalHistory[0].goal)
+
+		// let goal = state.goalHistory[i].goal]
+
 
 		const goalsDropDown = this.props.goalHistory.map((goal, index) => {
-			return <option value={index} key={index}>{goal}</option>
+			return <option value={index} key={index}>{goal.index.goal}</option>
 		});
 
 		const goalSelector =
@@ -63,7 +77,8 @@ export class GoalFormInput extends React.Component {
 const mapStateToProps = (state, props) => {
 	return {
 		currentGoal: state.currentGoal,
-		goalHistory: state.goalHistory
+		goalHistory: state.goalHistory,
+
 	}
 }
 
