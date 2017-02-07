@@ -9,6 +9,10 @@ const initialState = {
 
 export const goalReducer = (state, action) => {
 	state = state || initialState;
+
+
+
+
 	if (action.type === actions.POST_SUCCESS) {
 		let goal = action.goal.goal;
 		let id = action.goal._id;
@@ -23,17 +27,19 @@ export const goalReducer = (state, action) => {
 	}
 	if (action.type === actions.FETCH_SUCCESS) {
 	 	let goalsArray = [];
-	 	for (var i = 0; i < action.goals.length; i++) {
+		let stepsArray;
+		for (var i = 0; i < action.goals.length; i++) {
 	 		goalsArray[i] = action.goals[i].goal;
-	 	}
+			// stepsArray[i] = (action.goals[i].steps);
+		}
 		state = Object.assign({}, state, {goalHistory: state.goalHistory.concat(goalsArray)
 		});
 		return state;
 	}
-	// if (action.type === actions.SELECT_GOAL) {
-	// 	state = Object.assign({}, state, {currentGoal: state.goalHistory.})
-	// 	return state;
-	// }
+	if (action.type === actions.SELECT_GOAL) {
+		state = Object.assign({}, state, {currentGoal: action.selectedGoal})
+		return state;
+	}
 
 	return state;
 };

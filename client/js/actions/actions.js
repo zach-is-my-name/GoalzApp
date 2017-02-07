@@ -14,7 +14,7 @@ export const fetchError = (goals, error) => ({
 });
 
 export const SELECT_GOAL = 'SELECT_GOAL';
-export const selectGoal = (goal) => ({
+export const selectGoal = (selectedGoal) => ({
     type: SELECT_GOAL,
     selectedGoal
 })
