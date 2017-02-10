@@ -35,10 +35,11 @@ export const goalReducer = (state = initialState , action) => {
 		state = Object.assign({}, state, {goalHistory:data});
 		return state;
 	}
-	// if (action.type === actions.SELECT_GOAL) {
-	// 	state = Object.assign({}, state, {currentGoal: action.selectedGoal})
-	// 	return state;
-	// }
-
+	if (action.type === actions.SELECT_GOAL) {
+		state = Object.assign({}, state, {currentGoal: state.goalHistory[action.selectedGoal].goal},{currentGoalSteps:state.goalHistory[action.selectedGoal].steps})
+		return state;
+	}
+// console.log(state.goalHistory[action.selectedGoal].goal);
+// console.log(state.goalHistory[action.selectedGoal].steps);
 	return state;
 };
