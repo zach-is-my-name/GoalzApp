@@ -45,7 +45,7 @@ export class GoalFormInput extends React.Component {
 						const input =
 						<form className="goal-input" onSubmit={this.submitGoal}>
 							{/* <p>{this.props.currentGoal}</p> */}
-							<label htmlFor="form-text">Enter your goal here:</label>
+							{/* <label htmlFor="form-text">Enter your goal here:</label> */}
 							<input type="text" id="form-text" placeholder="Your Goal" ref="input" required />
 							<input type="submit" name="submit step" value="Enter Goal"/>
 						</form>
